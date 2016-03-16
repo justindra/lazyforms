@@ -1,4 +1,6 @@
-generatePdfDougDisher = function (userId) {
+if (typeof LazyForms === 'undefined') { LazyForms = {}; }
+
+LazyForms['generatePdfDougDisher'] = function (userId) {
   var user = Meteor.users.findOne(userId),
         doc = new jsPDF();
 
