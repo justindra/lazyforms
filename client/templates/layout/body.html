@@ -1,0 +1,11 @@
+<template name="appBody">
+  <!-- {{#if Template.subscriptionsReady}} -->
+    {{>appHeader}}
+      <div class="container">
+        {{> Template.dynamic template=content}}
+      </div>
+    <!-- {{>appFooter owner=owner}} -->
+  <!-- {{else}} -->
+    <!-- {{>loading}} -->
+  <!-- {{/if}} -->
+</template>

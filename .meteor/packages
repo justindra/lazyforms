@@ -21,3 +21,29 @@ insecure                # Allow all DB writes from clients (for prototyping)
 
 # PDF CREATION
 jspdf:core
+
+# Router
+kadira:flow-router
+kadira:blaze-layout
+arillo:flow-router-helpers
+
+# Accounts
+accounts-password
+# alanning:roles
+
+# UI/UX
+less
+nemo64:bootstrap
+fortawesome:fontawesome
+# markdown
+# justindra:admin-layout
+# justindra:bootstrap-templates
+# momentjs:moment
+
+# Collections
+aldeed:collection2
+
+# others
+alethes:lodash
+check
+reactive-var

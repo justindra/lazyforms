@@ -1,0 +1,34 @@
+<template name="appHeader">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-header-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">LazyForms</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="app-header-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          {{#unless currentUser}}
+          <li><a href="#" data-action="login">Login</a></li>
+          {{else}}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.profile.name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#" data-action="logout">Logout</a></li>
+            </ul>
+          </li>
+          {{/unless}}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</template>
