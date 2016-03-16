@@ -29,6 +29,10 @@ arillo:flow-router-helpers
 
 # Accounts
 accounts-password
+accounts-facebook
+accounts-google
+service-configuration
+ian:accounts-ui-bootstrap-3
 # alanning:roles
 
 # UI/UX

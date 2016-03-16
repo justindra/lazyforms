@@ -7,8 +7,8 @@ Meteor.startup(function () {
       email: 'admin@domain.com',
       profile: {
         name: 'John Smith',
-        firstName: 'John',
-        lastName: 'Smith',
+        first_name: 'John',
+        last_name: 'Smith',
         address: {
           street: '123 Some Street',
           suburb: 'Toowong',
@@ -24,7 +24,7 @@ Meteor.startup(function () {
         },
         dob: '1/1/1990',
         identifications: {
-          driversLicense: {
+          drivers_license: {
             number: '90223232323',
             state: 'QLD',
             expiry: '20/3/2017'
