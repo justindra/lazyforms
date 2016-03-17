@@ -1,0 +1,171 @@
+<template name="profile">
+  <div class="container">
+    <p>Any details you don't fill in below will be left out when you generate the form. So fill in as much as possible so you don't have to do it manually. :)</p>
+     <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Personal Details</a></li>
+      <li role="presentation"><a href="#rental" aria-controls="rental" role="tab" data-toggle="tab"><i class="fa fa-map-marker"></i> Rental History</a></li>
+      <li role="presentation"><a href="#employment" aria-controls="employment" role="tab" data-toggle="tab"><i class="fa fa-briefcase"></i> Employment History</a></li>
+      <li role="presentation"><a href="#references" aria-controls="references" role="tab" data-toggle="tab"><i class="fa fa-users"></i> References</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="personal">{{>personalProfile user=user}}</div>
+      <div role="tabpanel" class="tab-pane" id="rental">{{>rentalProfile user=user}}</div>
+      <div role="tabpanel" class="tab-pane" id="employment">{{>employmentProfile user=user}}</div>
+      <div role="tabpanel" class="tab-pane" id="references">{{>referencesProfile user=user}}</div>
+    </div>
+  </div>
+</template>
+
+<template name="personalProfile">
+  <div class="col-xs-12">
+    <form class="form-horizontal" id="personal-profile-form">
+      {{>bsFormInputHidden name="user_id" value=user._id}}
+      {{>bsFormInputText label="First Name(s)" name="first_name" value=user.profile.first_name}}
+      {{>bsFormInputText label="Last Name" name="last_name" value=user.profile.last_name}}
+      {{#bsFormInputTemplate label="Address"}}
+        <input type="text" class="form-control" name="address_street" value="{{user.profile.address.street}}" placeholder="street" />
+        <input type="text" class="form-control" name="address_suburb" value="{{user.profile.address.suburb}}" placeholder="suburb" />
+        <input type="text" class="form-control" name="address_state" value="{{user.profile.address.state}}" placeholder="state" />
+        <input type="text" class="form-control" name="address_country" value="{{user.profile.address.country}}" placeholder="country" />
+        <input type="text" class="form-control" name="address_postcode" value="{{user.profile.address.postcode}}" placeholder="postcode" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputText label="Email" name="email" value=user.profile.email}}
+      {{#bsFormInputTemplate label="Contact Numbers"}}
+        <input type="text" class="form-control" name="phone_home" value="{{user.profile.phone.home}}" placeholder="home" />
+        <input type="text" class="form-control" name="phone_mobile" value="{{user.profile.phone.mobile}}" placeholder="mobile" />
+        <input type="text" class="form-control" name="phone_work" value="{{user.profile.phone.work}}" placeholder="work" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputDate label="Date of Birth" name="dob" value=user.profile.dob}}
+      {{#bsFormInputTemplate label="Driver's License"}}
+        <input type="text" class="form-control" name="drivers_license_number" value="{{user.profile.identifications.drivers_license.number}}" placeholder="number" />
+        <input type="text" class="form-control" name="drivers_license_state" value="{{user.profile.identifications.drivers_license.state}}" placeholder="state" />
+        <input type="date" class="form-control" name="drivers_license_expiry" value="{{formatDateForInput user.profile.identifications.drivers_license.expiry}}" placeholder="expiry" />
+      {{/bsFormInputTemplate}}
+      {{#bsFormInputTemplate label="Passport"}}
+        <input type="text" class="form-control" name="passport_number" value="{{user.profile.identifications.passport.number}}" placeholder="number" />
+        <input type="text" class="form-control" name="passport_country" value="{{user.profile.identifications.passport.country}}" placeholder="country" />
+        <input type="date" class="form-control" name="passport_expiry" value="{{formatDateForInput user.profile.identifications.passport.expiry}}" placeholder="expiry" />
+      {{/bsFormInputTemplate}}
+      {{#bsFormInputTemplate label="Car"}}
+        <input type="text" class="form-control" name="car_type" value="{{user.profile.identifications.car.type}}" placeholder="type" />
+        <input type="text" class="form-control" name="car_plate" value="{{user.profile.identifications.car.plate}}" placeholder="plate" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputSubmit}}
+    </form>
+  </div>
+</template>
+
+<template name="rentalProfile">
+  <div class="col-xs-12">
+    <form class="form-horizontal" id="rental-profile-form">
+      <h4>Current Rental Details (if applicable)</h4>
+      {{>bsFormInputHidden name="user_id" value=user._id}}
+      {{#bsFormInputTemplate label="Address"}}
+        <input type="text" class="form-control" name="current_address_street" value="{{user.profile.rental_history.current.address.street}}" placeholder="street" />
+        <input type="text" class="form-control" name="current_address_suburb" value="{{user.profile.rental_history.current.address.suburb}}" placeholder="suburb" />
+        <input type="text" class="form-control" name="current_address_state" value="{{user.profile.rental_history.current.address.state}}" placeholder="state" />
+        <input type="text" class="form-control" name="current_address_country" value="{{user.profile.rental_history.current.address.country}}" placeholder="country" />
+        <input type="text" class="form-control" name="current_address_postcode" value="{{user.profile.rental_history.current.address.postcode}}" placeholder="postcode" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputText label="Rent ($)" name="current_rent" value=user.profile.rental_history.current.rent}}
+      {{>bsFormInputText label="Length of Time Living Here" name="current_length" value=user.profile.rental_history.current.length}}
+      {{#bsFormInputTemplate label="Agent/Landlord"}}
+        <input type="text" class="form-control" name="current_agent_name" value="{{user.profile.rental_history.current.agent.name}}" placeholder="name" />
+        <input type="text" class="form-control" name="current_agent_phone" value="{{user.profile.rental_history.current.agent.phone}}" placeholder="phone" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputTextArea label="Reason for Leaving" name="current_reason" value=user.profile.rental_history.current.reason}}
+      <h4>Previous Rental Details (if applicable)</h4>
+      {{#bsFormInputTemplate label="Address"}}
+        <input type="text" class="form-control" name="previous_address_street" value="{{user.profile.rental_history.previous.address.street}}" placeholder="street" />
+        <input type="text" class="form-control" name="previous_address_suburb" value="{{user.profile.rental_history.previous.address.suburb}}" placeholder="suburb" />
+        <input type="text" class="form-control" name="previous_address_state" value="{{user.profile.rental_history.previous.address.state}}" placeholder="state" />
+        <input type="text" class="form-control" name="previous_address_country" value="{{user.profile.rental_history.previous.address.country}}" placeholder="country" />
+        <input type="text" class="form-control" name="previous_address_postcode" value="{{user.profile.rental_history.previous.address.postcode}}" placeholder="postcode" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputText label="Rent ($)" name="previous_rent" value=user.profile.rental_history.previous.rent}}
+      {{>bsFormInputText label="Length of Time Living Here" name="previous_length" value=user.profile.rental_history.previous.length}}
+      {{#bsFormInputTemplate label="Agent/Landlord"}}
+        <input type="text" class="form-control" name="previous_agent_name" value="{{user.profile.rental_history.previous.agent.name}}" placeholder="name" />
+        <input type="text" class="form-control" name="previous_agent_phone" value="{{user.profile.rental_history.previous.agent.phone}}" placeholder="phone" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputTextArea label="Reason for Leaving" name="previous_reason" value=user.profile.rental_history.previous.reason}}
+      {{>bsFormInputSubmit}}
+    </form>
+  </div>
+</template>
+
+<template name="employmentProfile">
+  <div class="col-xs-12">
+    <form class="form-horizontal" id="employment-profile-form">
+      <h4>Current Employment Details (if applicable)</h4>
+      {{>bsFormInputHidden name="user_id" value=user._id}}
+      {{>bsFormInputText label="Employer Name" name="current_name" value=user.profile.employment_history.current.name}}
+      {{#bsFormInputTemplate label="Address"}}
+        <input type="text" class="form-control" name="current_address_street" value="{{user.profile.employment_history.current.address.street}}" placeholder="street" />
+        <input type="text" class="form-control" name="current_address_suburb" value="{{user.profile.employment_history.current.address.suburb}}" placeholder="suburb" />
+        <input type="text" class="form-control" name="current_address_state" value="{{user.profile.employment_history.current.address.state}}" placeholder="state" />
+        <input type="text" class="form-control" name="current_address_country" value="{{user.profile.employment_history.current.address.country}}" placeholder="country" />
+        <input type="text" class="form-control" name="current_address_postcode" value="{{user.profile.employment_history.current.address.postcode}}" placeholder="postcode" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputText label="Position" name="current_position" value=user.profile.employment_history.current.position}}
+      {{>bsFormInputText label="Length of Employment" name="current_length" value=user.profile.employment_history.current.length}}
+      {{>bsFormInputText label="Net Income ($)" name="current_income" value=user.profile.employment_history.current.income}}
+      {{>bsFormInputText label="Capacity (Full/Part Time)" name="current_capacity" value=user.profile.employment_history.current.capacity}}
+      {{#bsFormInputTemplate label="Manager"}}
+        <input type="text" class="form-control" name="current_manager_name" value="{{user.profile.employment_history.current.manager.name}}" placeholder="name" />
+        <input type="text" class="form-control" name="current_manager_position" value="{{user.profile.employment_history.current.manager.position}}" placeholder="position" />
+        <input type="text" class="form-control" name="current_manager_phone" value="{{user.profile.employment_history.current.manager.phone}}" placeholder="phone" />
+      {{/bsFormInputTemplate}}
+      <h4>Previous Employment Details (if applicable)</h4>
+      {{>bsFormInputText label="Employer Name" name="previous_name" value=user.profile.employment_history.previous.name}}
+      {{#bsFormInputTemplate label="Address"}}
+        <input type="text" class="form-control" name="previous_address_street" value="{{user.profile.employment_history.previous.address.street}}" placeholder="street" />
+        <input type="text" class="form-control" name="previous_address_suburb" value="{{user.profile.employment_history.previous.address.suburb}}" placeholder="suburb" />
+        <input type="text" class="form-control" name="previous_address_state" value="{{user.profile.employment_history.previous.address.state}}" placeholder="state" />
+        <input type="text" class="form-control" name="previous_address_country" value="{{user.profile.employment_history.previous.address.country}}" placeholder="country" />
+        <input type="text" class="form-control" name="previous_address_postcode" value="{{user.profile.employment_history.previous.address.postcode}}" placeholder="postcode" />
+      {{/bsFormInputTemplate}}
+      {{>bsFormInputText label="Position" name="previous_position" value=user.profile.employment_history.previous.position}}
+      {{>bsFormInputText label="Length of Employment" name="previous_length" value=user.profile.employment_history.previous.length}}
+      {{>bsFormInputText label="Net Income ($)" name="previous_income" value=user.profile.employment_history.previous.income}}
+      {{>bsFormInputText label="Capacity (Full/Part Time)" name="previous_capacity" value=user.profile.employment_history.previous.capacity}}
+      {{#bsFormInputTemplate label="Manager"}}
+        <input type="text" class="form-control" name="previous_manager_name" value="{{user.profile.employment_history.previous.manager.name}}" placeholder="name" />
+        <input type="text" class="form-control" name="previous_manager_position" value="{{user.profile.employment_history.previous.manager.position}}" placeholder="position" />
+        <input type="text" class="form-control" name="previous_manager_phone" value="{{user.profile.employment_history.previous.manager.phone}}" placeholder="phone" />
+      {{/bsFormInputTemplate}}
+      <h4>Student Details</h4>
+      {{>bsFormInputText label="Student Number" name="student_number" value=user.profile.employment_history.student.number}}
+      {{>bsFormInputText label="Institution" name="student_institution" value=user.profile.employment_history.student.institution}}
+      {{>bsFormInputText label="Degree/Course" name="student_degree" value=user.profile.employment_history.student.degree}}
+      {{>bsFormInputText label="Sponsorhip Amount ($)" name="student_sponsorship" value=user.profile.employment_history.student.sponsorship}}
+      {{>bsFormInputText label="Capacity (Full/Part Time)" name="student_capacity" value=user.profile.employment_history.student.capacity}}
+      {{>bsFormInputText label="Year (yyyy)" name="student_year" value=user.profile.employment_history.student.year}}
+      {{>bsFormInputSubmit}}
+    </form>
+  </div>
+</template>
+
+<template name="referencesProfile">
+  <div class="col-xs-12">
+    <form class="form-horizontal" id="references-profile-form">
+      {{>bsFormInputHidden name="user_id" value=user._id}}
+      <h4>Reference #1</h4>
+      {{>bsFormInputText label="Name" name="reference_name[]" value=user.profile.references.[0].name}}
+      {{>bsFormInputText label="Relationship" name="reference_relationship[]" value=user.profile.references.[0].relationship}}
+      {{>bsFormInputText label="Contact Number" name="reference_number[]" value=user.profile.references.[0].number}}
+      <h4>Reference #2</h4>
+      {{>bsFormInputText label="Name" name="reference_name[]" value=user.profile.references.[1].name}}
+      {{>bsFormInputText label="Relationship" name="reference_relationship[]" value=user.profile.references.[1].relationship}}
+      {{>bsFormInputText label="Contact Number" name="reference_number[]" value=user.profile.references.[1].number}}
+      <h4>Reference #3</h4>
+      {{>bsFormInputText label="Name" name="reference_name[]" value=user.profile.references.[2].name}}
+      {{>bsFormInputText label="Relationship" name="reference_relationship[]" value=user.profile.references.[2].relationship}}
+      {{>bsFormInputText label="Contact Number" name="reference_number[]" value=user.profile.references.[2].number}}
+      {{>bsFormInputSubmit}}
+    </form>
+  </div>
+</template>

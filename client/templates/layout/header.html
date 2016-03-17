@@ -9,12 +9,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">LazyForms</a>
+        <a class="navbar-brand" href="{{pathFor 'home'}}">LazyForms</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="app-header-collapse">
         <ul class="nav navbar-nav navbar-right">
+          <li><a href="">Generate Form</a></li>
+          <li><a href="{{pathFor 'profile'}}">Profile</a></li>
           {{> loginButtons}}
         </ul>
       </div>
@@ -22,6 +24,6 @@
   </nav>
 </template>
 
-<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+<!-- <template name="_loginButtonsAdditionalLoggedInDropdownActions">
     <a href="#" class="btn btn-default btn-block" id="login-buttons-profile">Profile</a>
-</template>
+</template> -->
