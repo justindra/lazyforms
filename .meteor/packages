@@ -39,7 +39,7 @@ fortawesome:fontawesome
 # markdown
 # justindra:admin-layout
 justindra:bootstrap-templates
-# momentjs:moment
+momentjs:moment
 
 # Collections
 aldeed:collection2

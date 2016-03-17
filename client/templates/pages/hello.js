@@ -6,7 +6,7 @@ Template.hello.events({
     var userId = $(evt.target).attr('data-id');
     var a = 'dd';
 
-    if (a == 'dd') generatePdfDougDisher(userId);
+    if (a == 'dd') LazyForms.generatePdfDougDisher(userId);
     
   }
 });
