@@ -1,6 +1,8 @@
 <template name="profile">
+  {{#if currentUser}}
   <div class="container">
     <p>Any details you don't fill in below will be left out when you generate the form. So fill in as much as possible so you don't have to do it manually. :)</p>
+    <p><strong>Don't forget to hit the "Save Changes" button at the bottom of the page to save any details.</strong></p>
      <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Personal Details</a></li>
@@ -17,6 +19,9 @@
       <div role="tabpanel" class="tab-pane" id="references">{{>referencesProfile user=user}}</div>
     </div>
   </div>
+  {{else}}
+    {{>notfound}}
+  {{/if}}
 </template>
 
 <template name="personalProfile">

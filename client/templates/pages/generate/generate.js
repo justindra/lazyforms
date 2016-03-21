@@ -18,6 +18,7 @@ Template.generate.events({
       }
     }
 
+    Meteor.call('saveProperty', evt.target.user_id.value, rental_details);
     LazyForms['generatePdf' + evt.target.agent.value](evt.target.user_id.value, rental_details);
   },
   'submit #location-rental-form, submit #pet-rental-form': function (evt, template) {

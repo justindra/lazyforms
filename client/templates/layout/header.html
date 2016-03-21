@@ -15,8 +15,10 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="app-header-collapse">
         <ul class="nav navbar-nav navbar-right">
+          {{#if currentUser}}
           <li><a href="{{pathFor 'generate'}}">Generate Form</a></li>
           <li><a href="{{pathFor 'profile'}}">Profile</a></li>
+          {{/if}}
           {{> loginButtons}}
         </ul>
       </div>

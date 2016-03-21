@@ -1,0 +1,21 @@
+<template name="loader">
+  <div class="loading">
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+  </div>
+</template>
+
+<template name="loading">
+  <div class="loading-page">
+    <img src="/logo-long-web.png">
+    {{>loader}}
+  </div>
+</template>
+
+<template name="loadingOverlay">
+  <div class="loading-overlay">
+    {{>loader}}
+  </div>
+</template>
