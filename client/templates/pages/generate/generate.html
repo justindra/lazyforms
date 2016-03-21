@@ -1,0 +1,60 @@
+<template name="generate">
+  <h1>Generate a Form</h1>
+  <div class="container">
+    <p>Any details you don't fill in below will be left out when you generate the form. So fill in as much as possible so you don't have to do it manually. :)</p>
+    <h4>Enter in details in each tab and when you are ready, go to the "Confirm & Generate" tab.</h4>
+     <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#location" aria-controls="location" role="tab" data-toggle="tab"><i class="fa fa-home"></i> Rental Location</a></li>
+      <li role="presentation"><a href="#pet" aria-controls="pet" role="tab" data-toggle="tab"><i class="fa fa-paw"></i> Pet Details</a></li>
+      <li role="presentation"><a href="#confirm" aria-controls="confirm" role="tab" data-toggle="tab"><i class="fa fa-check"></i> Confirm & Generate</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="location">{{>locationRental}}</div>
+      <div role="tabpanel" class="tab-pane" id="pet">{{>petRental}}</div>
+      <div role="tabpanel" class="tab-pane" id="confirm">{{>confirmRental}}</div>
+    </div>
+  </div>
+</template>
+
+<template name="locationRental">
+  <div class="col-xs-12">
+    <form class="form-horizontal" id="location-rental-form">
+      <h4>Type in the details of the Rental Property below.</h4>
+      {{>bsFormInputText label="Property Address" name="rental_address"}}
+      {{>bsFormInputText label="Weekly Rent ($)" name="rental_weekly_rent"}}
+      {{>bsFormInputText label="Lease Term (Months)" name="rental_lease_term"}}
+      {{>bsFormInputDate label="Lease Start Date" name="rental_lease_start"}}
+      {{>bsFormInputText label="No of Occupants" name="rental_occupants" type="number"}}
+      {{>bsFormInputText label="No and age of Children" name="rental_children"}}
+    </form>
+  </div>
+</template>
+
+<template name="petRental">
+  <div class="col-xs-12">
+    <form class="form-horizontal" id="pet-rental-form">
+      <h4>Have any pets? Enter their details below.</h4>
+      {{>bsFormInputText label="No and type of pets" name="rental_pets"}}
+      {{>bsFormInputText label="Pets Registered with Council? (Y/N)" name="rental_pets_registered"}}
+    </form>
+  </div>
+</template>
+
+<template name="confirmRental">
+  <div class="col-xs-12">
+    <form class="text-center" id="confirm-rental-form">
+      <h4>Please select the Real Estate Agent you are applying to:</h4>
+      {{>bsFormInputHidden name="user_id" value=currentUser._id}}
+      <select name="agent" required>
+        <option disabled selected>Select Option</option>
+        <option value="dougDisher_toowong">Doug Disher - Toowong</option>
+        <option value="rayWhite_toowong">Ray White - Toowong</option>
+      </select>
+      <h4>Once you have filled in as much information both on your profile and on this page, click the generate button below and you will be able to save the form</h4>
+      <input type="submit" class="btn btn-primary" value="Generate" />
+    </form>
+  </div>
+</template>

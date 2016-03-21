@@ -1,4 +1,14 @@
 <template name="hello">
-  <button data-id="{{currentUser._id}}">Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+  <div class="container">
+    {{#if currentUser}}
+      <h4>Have you filled in your profile yet?</h4>
+      <p>Go to <a href="{{pathFor 'profile'}}">profile</a> page to fill it in.</p>
+      <h4>Or start generating your forms now!</h4>
+      <p>Go to <a href="{{pathFor 'generate'}}">generate</a> page to Generate the Forms.</p>
+    {{else}}
+      <p>Not the automated form filler we deserve, but the automated form filler that's necessary.</p>
+      <p>Such form, how lazy, much easy, wow.</p>
+      <p>Sign up now, click the Sign up button up top</p>
+    {{/if}}
+  </div>
 </template>
