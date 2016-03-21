@@ -1,0 +1,21 @@
+<template name="googleAds">
+  <!-- <div class="ads"></div> -->
+  {{#if canRunAds}}
+  <div class="ads">
+    <iframe src="/ads.html?v={{unique}}" seamless scrolling="no" frameborder="0" marginheight="0" marginwidth="0" style="margin:0;padding:0;border:none;width: 100%;"></iframe>
+  </div>
+  {{else}}
+    <div class="container text-center">
+      <h3><em>We noticed that you have an Ad Blocker installed. Please whitelist our site as we use ads to keep this service free for you. :)</em></h3>
+    </div>
+  {{/if}}
+</template>
+
+<template name="ads">
+  <div class="container">
+    <div class="row">
+      <p class="flow-text center-align">Below is some advertisement to help fund this project</p>
+    </div>
+  </div>
+  {{> googleAds}}
+</template>

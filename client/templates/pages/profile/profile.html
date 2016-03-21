@@ -18,7 +18,10 @@
       <div role="tabpanel" class="tab-pane" id="employment">{{>employmentProfile user=user}}</div>
       <div role="tabpanel" class="tab-pane" id="references">{{>referencesProfile user=user}}</div>
     </div>
+
+    {{>googleAds}}
   </div>
+
   {{else}}
     {{>notfound}}
   {{/if}}
