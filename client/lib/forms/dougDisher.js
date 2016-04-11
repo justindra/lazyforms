@@ -45,7 +45,7 @@ LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
   // Current Rental Details
   var rental_history = profile.rental_history;
 
-  if (rental_history.current) {
+  if (rental_history && rental_history.current) {
     var current = rental_history.current;
     if (current.address) doc.text(10, 222, current.address.street + ', '
                                          + current.address.suburb + ', '
@@ -62,7 +62,7 @@ LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
     }
   }
 
-  if (rental_history.previous) {
+  if (rental_history && rental_history.previous) {
     var previous = rental_history.previous;
     if (previous.address) doc.text(10, 257, previous.address.street + ', '
                                          + previous.address.suburb + ', '
@@ -84,7 +84,7 @@ LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
 
   // Employment Details
   var employment_history = profile.employment_history;
-  if (employment_history.current) {
+  if (employment_history && employment_history.current) {
     var current = employment_history.current;
     if (current.name) doc.text(10, 44, current.name);
     if (current.address) doc.text (107, 44, current.address.street + ', '
@@ -101,7 +101,7 @@ LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
     if (current.capacity) doc.text(141, 63, current.capacity);
   }
 
-  if (employment_history.previous) {
+  if (employment_history && employment_history.previous) {
     var previous = employment_history.previous;
     if (previous.name) doc.text(10, 80, previous.name);
     if (previous.address) doc.text (107, 80, previous.address.street + ', '
@@ -118,7 +118,7 @@ LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
     if (previous.capacity) doc.text(141, 99, previous.capacity);
   }
 
-  if (employment_history.student) {
+  if (employment_history && employment_history.student) {
     var student = employment_history.student;
     if (student.number) doc.text(10, 115, student.number);
     if (student.institution) doc.text(76, 115, student.institution);
@@ -133,10 +133,12 @@ LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
       name = [[10, 141], [10, 150.5], [10, 160]],
       relationship = [[76, 141], [76, 150.5], [76, 160]],
       number = [[141, 141], [141, 150.5], [141, 160]];
-  for (var i = 0; i < references.length; i++) {
-    if (references[i].name) doc.text(name[i][0], name[i][1], references[i].name);
-    if (references[i].relationship) doc.text(relationship[i][0], relationship[i][1], references[i].relationship);
-    if (references[i].number) doc.text(number[i][0], number[i][1], references[i].number);
+  if (references) {
+    for (var i = 0; i < references.length; i++) {
+      if (references[i].name) doc.text(name[i][0], name[i][1], references[i].name);
+      if (references[i].relationship) doc.text(relationship[i][0], relationship[i][1], references[i].relationship);
+      if (references[i].number) doc.text(number[i][0], number[i][1], references[i].number);
+    }
   }
 
   // Emergency Contact
