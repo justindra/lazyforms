@@ -1,6 +1,6 @@
 if (typeof LazyForms === 'undefined') { LazyForms = {}; }
 
-LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
+LazyForms['generatePdf_toowong_dougDisher'] = function (userId, rentalDetails) {
   var profile = Meteor.users.findOne(userId).profile,
       doc = new jsPDF();
 
@@ -159,9 +159,6 @@ LazyForms['generatePdfdougDisher_toowong'] = function (userId, rentalDetails) {
 
   doc.addPage();
   doc.addImage(REForms.toowong_DougDisher.forms[2], 'JPEG', 0, 0, 210, 297);
-
-  // var splitTitle = doc.splitTextToSize("Hello what is this crazy title doing here. its so long and windy and is it gonna wrap? I don't know its just so crazy", 50);
-  // doc.text(15, 20, splitTitle);
 
   doc.save('toowongDougDisher-' + profile.name + '.pdf');
 }
